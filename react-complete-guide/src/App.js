@@ -9,8 +9,9 @@ class App extends Component {
        <div className="App">
          <h1>Hi I'm a react app</h1>
          <p>This is working</p>
-          <Person/>
-          <Person/>
+          <Person name="Max" age="28"/>
+           <Person name="Manu" age="29">My hobbies: Racing </Person>
+          <Person name="Stephe" age="26"/>
        </div> //this part of code is jsx which looks like html
        // <p>This does not wrk</p>  as jsx can have only 1 root element
      );
