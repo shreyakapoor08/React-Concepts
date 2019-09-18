@@ -13,11 +13,11 @@ class App extends Component {
         otherState: 'some other value'
     }
 
-    switchNameHandler = () => {
+    switchNameHandler = (newName) => {
         //console.log('Was Clicked!');
         //dont do this -> this.state.persons[0].name = "Maxmilion"
         this.setState({persons: [
-                {name: 'Maxmilian', age: 28},
+                {name: newName, age: 28},
                 {name: 'Manu', age: 29},
                 {name: 'Stephe', age: 27}
             ] }) //this method allows us to change the state and makes sure to update the dom and it will merge with the actual state
@@ -29,10 +29,17 @@ class App extends Component {
        <div className="App">
          <h1>Hi I'm a react app</h1>
          <p>This is working</p>
-           <button onClick={this.switchNameHandler}>Switch name</button> {/*in jsx its onCLick with capital C*/}
-          <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-           <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Racing </Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+         <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch name</button> {/*in jsx its onCLick with capital C*/}
+          <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}/>
+           <Person
+               name={this.state.persons[1].name}
+               age={this.state.persons[1].age}
+               click={this.switchNameHandler.bind(this,'Max!')}>My hobbies: Racing</Person>
+          <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}/>
        </div> //this part of code is jsx which looks like html
        // <p>This does not wrk</p>  as jsx can have only 1 root element
      );

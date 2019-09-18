@@ -5,7 +5,7 @@ const person = (props) => { //props means all the property which we added to our
     //component is a function which is returning some jsx
     return (
         <div>
-            <p>I'm a {props.name} and I am {props.age} years old</p>
+            <p onClick={props.click}>I'm a {props.name} and I am {props.age} years old</p>
             <p>{props.children}</p>
         </div>
         //{props.children} will be null if we check it in console
