@@ -23,12 +23,9 @@ class App extends Component{
               </div>
 
               {/*wrapping the form which is supposed to be changed into a Route element*/}
-              <Route exact path="/" component={SignUpForm}>
+              <Route exact path="/" component={SignUpForm} />
 
-              </Route>
-              <Route path="/sign-in" component={SignInForm}>
-
-              </Route>
+              <Route path="/sign-in" component={SignInForm} />
             </div>
           </div>
         </Router>

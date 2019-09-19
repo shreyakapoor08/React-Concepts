@@ -23,7 +23,7 @@ class App extends Component {
         }
         let notesArr = this.state.notes;
         notesArr.push(this.state.noteText);
-        this.setState({noteText: ''});
+        this.setState({noteText: ''}); // this is to blank the text area so that we can add further values
         this.textInput.focus();
     }
 

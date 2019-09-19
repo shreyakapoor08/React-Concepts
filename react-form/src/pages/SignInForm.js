@@ -2,32 +2,24 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 
 class SignInForm extends Component{
-    constructor() {
-        super();
-
-        this.state = {
+    state = {
             email: '',
             password: ''
         //    now we have to bind these fields with the input of the form
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(e) {
+    handleChange = (e) => {
         let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
+        let value = target.value;
         let name = target.name;
-
         this.setState({
             [name] : value
         });
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-
+        //url ek hi baar load ho aur data append hota rahe, refresh event ko rokta hai
         console.log('The form was submitted with the following data: ');
         console.log(this.state);
     }
