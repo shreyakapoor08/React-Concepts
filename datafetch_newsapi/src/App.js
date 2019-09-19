@@ -3,11 +3,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component{
-    constructor(props) {
-        super(props);
-
-        this.state = {query: '', hits: []};
-    }
+    state = {query: '', hits: []};
 
     onChange = event => {
         this.setState({query: event.target.value});
@@ -15,22 +11,18 @@ class App extends Component{
 
     onSearch = event => {
         event.preventDefault();
-
-        const {query} = this.state;
-
-        if(query === ''){
+        if(this.state.query === ''){
             return;
         }
-
-
-        const cachedHits = localStorage.getItem(query);
+        const cachedHits = localStorage.getItem(this.state.query);
 
         if (cachedHits) {
+            console.log(cachedHits)
             this.setState({ hits: JSON.parse(cachedHits) });
         } else {
-            fetch('https://hn.algolia.com/api/v1/search?query=' + query)
+            fetch('https://hn.algolia.com/api/v1/search?query=' + this.state.query)
                 .then(response => response.json())
-                .then(result => this.onSetResult(result, query));
+                .then(result => this.onSetResult(result, this.state.query));
         }
     };
 
@@ -46,7 +38,7 @@ class App extends Component{
                 <h1>Search Hacker News with Local Storage</h1>
                 {/* Search Input */}
                 <form onSubmit={this.onSearch}>
-                    <input type="text" onChange={this.onChange} />
+                    <input type="text" onChange={this.onChange} required/>
                     <button type="submit">Search</button>
                 </form>
                 {/* Result */}
