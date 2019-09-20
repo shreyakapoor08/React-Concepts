@@ -3,28 +3,39 @@ import Note from './components/note'
 import './App.css';
 
 class App extends Component {
-    constructor(props) {
-        super(props) ;
-            this.state = {
+   state = {
+                pos: 0,
                 noteText: '',
-                notes: []
+                notes: [],
+                btnText: 'Add It'
             //    notes will contain all the notes which we add
             //    noteText will contain text of actual note, value will get updated
             }
-    }
-    updateNoteText(noteText) {
+
+    updateNoteText = noteText => {
         this.setState({noteText: noteText.target.value})
     }
 
-    addNote() {
+    editNoteText = index => {
+       this.setState({noteText: this.state.notes[index], btnText: 'Update', pos: index})
+    }
+
+    addNote = () => {
         if(this.state.noteText === '')
         {
             return;
         }
-        let notesArr = this.state.notes;
-        notesArr.push(this.state.noteText);
-        this.setState({noteText: ''}); // this is to blank the text area so that we can add further values
-        this.textInput.focus();
+        if(this.state.btnText === 'Add It'){
+            let notesArr = this.state.notes;
+            notesArr.push(this.state.noteText);
+            this.setState({noteText: ''}); // this is to blank the text area so that we can add further values
+        } else {
+            let newArr = this.state.notes;
+            newArr[this.state.pos] = this.state.noteText;
+            this.setState({notes:newArr, noteText:'', btnText: 'Add It'})
+        }
+
+
     }
 
     handleKeyPress = (event) => {
@@ -35,7 +46,7 @@ class App extends Component {
         }
     }
 
-    deleteNote(index) {
+    deleteNote = index => {
         let notesArr = this.state.notes;
         notesArr.splice(index, 1);
     //    it will remove note from notes array
@@ -46,7 +57,8 @@ class App extends Component {
         let notes = this.state.notes.map((val,key)=>{
             return <Note key={key}
                          text={val}
-                         deleteMethod={()=> this.deleteNote(key)} />
+                         deleteMethod={()=> this.deleteNote(key)}
+                         editMethod={()=> this.editNoteText(key)}     />
         //                 react uses this key to check which element is added updated or deleted
         })
 
@@ -56,12 +68,11 @@ class App extends Component {
                     React Todo Application
                 </div>
                 {notes}
-                <div className="btn" onClick={this.addNote.bind(this)}>
-                    +
+                <div className="btn" onClick={this.addNote}>
+                    {this.state.btnText}
                 </div>
                 <input type="text"
-                    ref={((input) => {this.textInput = input})}
-                    className="textInput"
+                       className="textInput"
                        value={this.state.noteText}
                        onChange={noteText => this.updateNoteText(noteText)}
                        onKeyPress={this.handleKeyPress}
