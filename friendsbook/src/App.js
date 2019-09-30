@@ -1,6 +1,7 @@
 import React from 'react';
 import PersonalInfo from './components/PersonalInfo';
-import Messages from './components/Messages';
+import CreateMessage from './components/CreateMessage';
+import DisplayMessage from './components/DisplayMessage';
 import Friends from './components/Friends';
 import './App.css';
 
@@ -8,25 +9,43 @@ class App extends React.Component
 {
     state = {
         messageText: '',
-        messages: []
+        messages: [],
+        btnText: 'Create',
+        pos: 0
     }
 
     inputHandler=(e)=>{
-        console.log(e.target.value);
         this.setState({messageText:e.target.value});
     }
-    submitHandler=() => {
+    submitHandler=(event) => {
+        console.log("event", event);
+        event.preventDefault();
         if(this.state.messageText.trim() === '')
-        {
-            return;
-        }
+            return false;
         let messageArr = [...this.state.messages];
-        messageArr.push(this.state.messageText);
-        this.setState({messages:messageArr ,messageText: ''});
+        if(this.state.btnText==='Create'){
+            messageArr.unshift(this.state.messageText);
+        }
+        else{
+            messageArr[this.state.pos] = this.state.messageText;
+        }
+        this.setState({messages:messageArr, messageText: ' ',btnText: 'Create'});
+
+    }
+
+    editMessage=(index)=>{
+        let messageText = this.state.messages[index]
+        this.setState({messageText, pos:index, btnText: 'Update'})
+    }
+
+    deleteMessage =(index)=>{
+        let messageArr = this.state.messages
+        messageArr.splice(index,1);
+        this.setState({messages: messageArr})
     }
   render()
   {
-      console.log(this.state)
+
     return (
         <div className='App'>
           <div className="wrapper-class">
@@ -35,7 +54,18 @@ class App extends React.Component
               </div>
               <div className="row">
                   <div className="col-lg-8">
-                      <Messages messageArr={this.state.messages} change={(e)=>this.inputHandler(e)} submit={this.submitHandler}/>
+                      <CreateMessage
+                          change={(e)=>this.inputHandler(e)}
+                          submit={this.submitHandler}
+                          messageText={this.state.messageText}
+
+                          btnText={this.state.btnText}
+                      />
+                      <DisplayMessage
+                          messages={this.state.messages}
+                          editMessage={(index) => this.editMessage(index)}
+                          deleteMessage={(index) => this.deleteMessage(index)}
+                      />
                   </div>
                   <div className="col-lg-4">
                       <Friends/>

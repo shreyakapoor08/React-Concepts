@@ -76,13 +76,19 @@
 }
 
 .messageinorder{
-  /*padding: 5px;*/
+  padding: 5px;
   /*width: 600px;*/
   /*height: 100px;*/
   box-shadow: 0px 0px 15px rgba(0,0,0,.3);
   margin: 20px;
   min-height: 50px;
   background-color: burlywood;
+}
+
+.messageinorder i{
+  font-size: 1.5em;
+  padding: 3px;
+  margin-top: 3px;
 }
 
 .settings button{
