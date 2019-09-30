@@ -1,19 +1,35 @@
 import React from 'react';
 
-const Friends = () => (
-    <div className='myfriends'>
-        <h2>MY FRIENDS</h2>
-        <ul>
-            <li>Naina</li>
-            <li>Palak</li>
-            <li>Aniket</li>
-            <li>Utkarsh</li>
-            <li>Monika</li>
-            <li>Pritiksha</li>
-            <li>Srishti</li>
-            <li>Bhavya</li>
-        </ul>
-    </div>
-);
+class Friends extends React.Component{
+    state = {
+        flag:false
+    }
 
-export default Friends;
+    clickHandler = () =>{
+        this.setState({flag:true})
+    }
+
+    render(){
+        let modalfriend = <div>
+            <input type="text" placeholder="Add friend"/>
+            <button className="addfrndbtn">Add new friend</button>
+        </div>
+            return(
+            <div className='myfriends'>
+                <h2>MY FRIENDS</h2>
+                <button className="addfrnd" onClick={this.clickHandler}>Add Friends</button>
+                {this.state.flag === false ? '':modalfriend}
+                <ul>
+                    <li>Naina</li>
+                    <li>Palak</li>
+                    <li>Monika</li>
+                    <li>Pritiksha</li>
+                    <li>Srishti</li>
+                    <li>Bhavya</li>
+                </ul>
+            </div>
+        );
+    }
+}
+;
+export default Friends

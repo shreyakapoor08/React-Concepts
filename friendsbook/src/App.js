@@ -24,7 +24,12 @@ class App extends React.Component
             return false;
         let messageArr = [...this.state.messages];
         if(this.state.btnText==='Create'){
-            messageArr.unshift(this.state.messageText);
+            let d = new Date();
+            let messageObj = {
+                text: this.state.messageText,
+                createdAt: d.getTime()
+            }
+            messageArr.unshift(messageObj);
         }
         else{
             messageArr[this.state.pos] = this.state.messageText;
