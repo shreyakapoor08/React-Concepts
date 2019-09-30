@@ -16,7 +16,9 @@ class App extends React.Component
 
     inputHandler=(e)=>{
         this.setState({messageText:e.target.value});
+
     }
+
     submitHandler=(event) => {
         console.log("event", event);
         event.preventDefault();
@@ -30,16 +32,15 @@ class App extends React.Component
                 createdAt: d.getTime()
             }
             messageArr.unshift(messageObj);
-        }
-        else{
-            messageArr[this.state.pos] = this.state.messageText;
+        } else{
+            messageArr[this.state.pos].text  = this.state.messageText;
         }
         this.setState({messages:messageArr, messageText: ' ',btnText: 'Create'});
 
     }
 
     editMessage=(index)=>{
-        let messageText = this.state.messages[index]
+        let messageText = this.state.messages[index].text
         this.setState({messageText, pos:index, btnText: 'Update'})
     }
 
@@ -48,9 +49,10 @@ class App extends React.Component
         messageArr.splice(index,1);
         this.setState({messages: messageArr})
     }
+
   render()
   {
-
+console.log(this.state.messages)
     return (
         <div className='App'>
           <div className="wrapper-class">
@@ -63,7 +65,6 @@ class App extends React.Component
                           change={(e)=>this.inputHandler(e)}
                           submit={this.submitHandler}
                           messageText={this.state.messageText}
-
                           btnText={this.state.btnText}
                       />
                       <DisplayMessage
