@@ -3,22 +3,27 @@ import React from 'react';
 class Friends extends React.Component{
     state = {
         flag:false,
-        friends: [],
         friendText: ''
     }
 
     inputHandler=(e)=>{
         this.setState({friendText:e.target.value});
-        console.log(this.state.friendText);
+
     }
 
     submitHandler=(event)=> {
         event.preventDefault();
         if(this.state.friendText.trim() === '')
             return false;
-        let friendArr = [...this.state.friends];
+        let friendArr = this.props.friends;
         friendArr.push(this.state.friendText);
-        this.setState({friends:friendArr, friendText: ' '});
+
+        let tagFriendArr = this.props.tagFriend;
+        tagFriendArr.push(this.state.friendText);
+
+        this.setState({friends:friendArr, friendText: ' ',tagFriend:tagFriendArr});
+        console.log("friends", this.props.friends);
+        console.log("tagFriend", this.props.tagFriend)
     }
 
     clickHandler = () =>{
@@ -26,9 +31,12 @@ class Friends extends React.Component{
     }
 
     render(){
+        let friendArr = this.props.friends.map((val,key)=>{
+            return <li key={key}>{val}</li>
+        })
         let modalfriend = <div>
             <input type="text" placeholder="Add friend" value={this.state.friendText} onChange={this.inputHandler}/>
-            <button className="addfrndbtn" onClick={(event)=>   this.submitHandler(event)}>Add new friend</button>
+            <button className="addfrndbtn" onClick={(event)=>  this.submitHandler(event)}>Add new friend</button>
                  </div>
             return(
             <div className='myfriends'>
@@ -36,12 +44,7 @@ class Friends extends React.Component{
                 <button className="addfrnd" onClick={this.clickHandler}>Add Friends</button>
                 {this.state.flag && modalfriend}
                 <ul>
-                    <li>Naina</li>
-                    <li>Palak</li>
-                    <li>Monika</li>
-                    <li>Pritiksha</li>
-                    <li>Srishti</li>
-                    <li>Bhavya</li>
+                    {friendArr}
                 </ul>
             </div>
         );

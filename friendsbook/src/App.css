@@ -2,8 +2,8 @@
   position: relative;
 }
 .profilepic img{
-  width: 200px;
-  height: 150px;
+  width: 180px;
+  height: 120px;
   border: 2px solid black;
   border-radius: 50%;
   position: absolute;
@@ -15,7 +15,9 @@
 .personal-info{
   padding: 5px;
   background-color: coral;
-  height: 170px;
+  height: 160px;
+
+
 }
 
 .profilepic{
@@ -137,4 +139,17 @@
 
 .datedisp{
   font-weight: bold;
+}
+
+.clsTrue{
+  display: block;
+  cursor: pointer;
+  border: 1px solid black;
+  width: 60px;
+  margin-left: 50px;
+
+}
+
+.clsFalse{
+  display: none;
 }

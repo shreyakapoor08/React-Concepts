@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DisplayMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DisplayMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateMessage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Friends.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +21,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-todolist" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -49,7 +49,9 @@
       <option name="presentableId" value="Default" />
       <updated>1568958670424</updated>
       <workItem from="1568958671529" duration="20431000" />
-      <workItem from="1569818720018" duration="23467000" />
+      <workItem from="1569818720018" duration="28218000" />
+      <workItem from="1570099887100" duration="5861000" />
+      <workItem from="1570163928243" duration="10764000" />
     </task>
     <servers />
   </component>

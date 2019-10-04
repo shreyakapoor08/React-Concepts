@@ -11,16 +11,38 @@ class App extends React.Component
         messageText: '',
         messages: [],
         btnText: 'Create',
-        pos: 0
+        pos: 0,
+        listFlag: false,
+        friends: ["Shreya","Srishti","Monika","Aniket"],
+        tagFriend: ["Shreya","Srishti","Monika","Aniket"]
     }
 
-    inputHandler=(e)=>{
-        this.setState({messageText:e.target.value});
 
+    inputHandler=(e)=>{
+        if(e.target.value.includes("@")){
+            this.setState({listFlag: true})
+            let text = e.target.value.split("@")[1] ? e.target.value.split("@")[1].toUpperCase() : "";
+            let filteredFriends = this.state.friends.filter(friend => {
+                if(friend.includes(text)) {
+                    return friend;
+                }
+            });
+            this.setState({messageText:e.target.value, tagFriend: filteredFriends});
+        }
+        else{
+            this.setState({messageText:e.target.value, listFlag: false})
+        }
+
+    };
+
+    tagsHandler = (tag) => {
+        let messageText = this.state.messageText;
+        messageText = messageText.split('@')[0] + " " + tag + ",";
+        this.setState({messageText, listFlag: false})
     }
 
     submitHandler=(event) => {
-        console.log("event", event);
+
         event.preventDefault();
         if(this.state.messageText.trim() === '')
             return false;
@@ -52,7 +74,7 @@ class App extends React.Component
 
   render()
   {
-console.log(this.state.messages)
+
     return (
         <div className='App'>
           <div className="wrapper-class">
@@ -62,10 +84,14 @@ console.log(this.state.messages)
               <div className="row">
                   <div className="col-lg-8">
                       <CreateMessage
-                          change={(e)=>this.inputHandler(e)}
+                          inputHandler={(e)=>this.inputHandler(e)}
                           submit={this.submitHandler}
+                          friends={this.state.friends}
                           messageText={this.state.messageText}
                           btnText={this.state.btnText}
+                          tagsHandler = {(tag) => this.tagsHandler(tag)}
+                          listFlag = {this.state.listFlag}
+                          tagFriend = {this.state.tagFriend}
                       />
                       <DisplayMessage
                           messages={this.state.messages}
@@ -74,7 +100,10 @@ console.log(this.state.messages)
                       />
                   </div>
                   <div className="col-lg-4">
-                      <Friends/>
+                      <Friends
+                          friends={this.state.friends}
+                          tagFriend = {this.state.tagFriend}
+                      />
                   </div>
               </div>
           </div>
