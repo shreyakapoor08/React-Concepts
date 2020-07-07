@@ -37,7 +37,7 @@ class SignUpForm extends Component{
     render() {
         return(
             <div className="FormCenter">
-                <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className="FormFields">
                     <div className="FormField">
                         <label htmlFor="name" className="FormField__Label">Full Name</label>
                         <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange}/>
